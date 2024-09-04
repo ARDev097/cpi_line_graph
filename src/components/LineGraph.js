@@ -5,6 +5,7 @@ import 'chartjs-adapter-date-fns';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { parse, format } from 'date-fns';
 import './LineGraph.css'; // Import the CSS file
+import oplogo from "./OP.png"
 
 ChartJS.register(TimeScale, LinearScale, PointElement, LineElement, Tooltip, Legend, annotationPlugin);
 
@@ -104,8 +105,8 @@ const LineGraph = () => {
         color: event.color,
         textAlign: 'center',
         padding: {
-          top: 30,
-          bottom: 4,
+          // top: 1,
+          bottom: 120,
           left: 6,
           right: 6,
         },
@@ -121,15 +122,20 @@ const LineGraph = () => {
 
   return (
     <div className="line-graph-container">
-      <h2 className="line-graph-title">CPI Over Time</h2>
-      <div className="view-selector">
-        <label>
-          View : 
-          <select onChange={(e) => setView(e.target.value)} value={view}>
-            <option value="daily">Daily CPI</option>
-            <option value="movingAverage">7-Day Moving Average</option>
-          </select>
-        </label>
+      <div className="header">
+        <img src={oplogo} alt="OP Logo" className="op-logo" />
+        <div className="header-content">
+          <h2 className="line-graph-title">Optimism CPI Over Time</h2>
+          <div className="view-selector">
+            <label>
+              View :  &nbsp;
+              <select onChange={(e) => setView(e.target.value)} value={view}>
+                <option value="daily">Daily CPI</option>
+                <option value="movingAverage">7-Day Moving Average</option>
+              </select>
+            </label>
+          </div>
+        </div>
       </div>
       {chartData && (
         <div className="line-graph">
