@@ -1,0 +1,35 @@
+.line-graph-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1500px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .line-graph-title {
+    text-align: center;
+    color: rgba(228,48,45,255);
+    margin-bottom: 20px;
+  }
+  
+  .view-selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .view-selector label {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .line-graph {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
