@@ -1,7 +1,8 @@
 .line-graph-container {
     margin: 20px auto;
     padding: 20px;
-    max-width: 1500px;
+    max-width: 1200px;
+    height: 590px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
@@ -26,7 +27,7 @@
   
   .line-graph {
     position: relative;
-    height: 500px;
+    height: 450px;
     width: 100%;
     background-color: #fff;
     border: 1px solid #ddd;

@@ -124,7 +124,7 @@ const LineGraph = () => {
       <h2 className="line-graph-title">CPI Over Time</h2>
       <div className="view-selector">
         <label>
-          View:
+          View : 
           <select onChange={(e) => setView(e.target.value)} value={view}>
             <option value="daily">Daily CPI</option>
             <option value="movingAverage">7-Day Moving Average</option>
@@ -181,7 +181,7 @@ const LineGraph = () => {
                 },
                 y: {
                   min: 40,  
-                  max: 350, 
+                  max: 360, 
                   ticks: {
                     stepSize: 40, 
                   },
