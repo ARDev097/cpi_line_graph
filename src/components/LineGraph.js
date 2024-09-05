@@ -59,41 +59,45 @@ const LineGraph = () => {
     const events = [
       { name: 'RPGF Round 2', startDate: '01-06-2022', endDate: '30-03-2023', color: 'rgba(255,0,0,0.7)' },
       { name: 'RPGF Round 3', startDate: '14-10-2023', endDate: '11-01-2024', color: 'rgba(255,0,0,0.7)' },
+      { name: 'RPGF Round 4', startDate: '03-06-2024', endDate: '11-01-2024', color: 'rgba(255,0,0,0.7)' },
       { name: 'Season 3', startDate: '26-01-2023', endDate: '05-04-2023', color: 'rgba(128,0,128,0.7)' },
       { name: 'Season 4', startDate: '08-06-2023', endDate: '20-09-2023', color: 'rgba(128,0,128,0.7)' },
-      { name: 'Season 5', startDate: '04-01-2024', endDate: '08-05-2024', color: 'rgba(128,0,128,0.7)' },
+      { name: 'Season 5', startDate: '04-01-2024', endDate: '00-00-0000', color: 'rgba(128,0,128,0.7)' },
+      { name: 'Season 6', startDate: '27-06-2024', endDate: '00-00-0000', color: 'rgba(128,0,128,0.7)' }
     ];
 
     const annotations = {};
 
     events.forEach((event, index) => {
       const start = parse(event.startDate, 'dd-MM-yyyy', new Date());
-      const end = event.endDate ? parse(event.endDate, 'dd-MM-yyyy', new Date()) : labels[labels.length - 1];
-      
+    
+      const isRPGF = event.name.includes('RPGF');
+      const yPosition = isRPGF ? '1%' : '15%'; 
+    
       annotations[`startLine${index}`] = {
         type: 'line',
         xMin: start,
         xMax: start,
         borderColor: event.color,
         borderWidth: 2,
-        borderDash: [6, 6], 
+        borderDash: [6, 6],
       };
-
+    
       annotations[`eventLabel${index}`] = {
         type: 'label',
-        xValue: start,
-        yValue: Math.max(...cpiData),
+        xValue: start, 
+        yValue: yPosition,
         content: `${event.name}`,
         font: {
-          size: 15,
+          size: 14,
           weight: 'bold',
         },
         color: event.color,
-        // textAlign: 'center',
+        textAlign: 'center',
+        xAdjust: isRPGF ? 55 : 40, 
+        yAdjust: isRPGF ? -20 : 20, 
         padding: {
-          bottom: 120,
-          left: 115,
-          // right: 6,
+          bottom: isRPGF ? 250 : 200,
         },
       };
     });
