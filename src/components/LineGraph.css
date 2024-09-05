@@ -80,6 +80,13 @@
   border-radius: 8px;
 }
 
+.last-updated {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 10px;
+}
+
+
 @media (max-width: 768px) {
   .line-graph-container {
     height: calc(100% - 50px); 

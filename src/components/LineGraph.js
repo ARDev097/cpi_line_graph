@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, TimeScale, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 import annotationPlugin from 'chartjs-plugin-annotation';
-import { parse, format } from 'date-fns';
+import { parse, format, isValid } from 'date-fns';
 import './LineGraph.css'; 
 import oplogo from "./OP.png"
 
@@ -12,12 +12,18 @@ ChartJS.register(TimeScale, LinearScale, PointElement, LineElement, Tooltip, Leg
 const LineGraph = () => {
   const [chartData, setChartData] = useState(null);
   const [view, setView] = useState('daily'); 
+  const [lastUpdateDate, setLastUpdateDate] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('/output_hhi_cpi.json');
       const data = await response.json();
       const formattedData = parseJSON(data);
+
+      // Find the last date from the data
+      const lastDate = formattedData.labels.length > 0 ? formattedData.labels[formattedData.labels.length - 1] : null;
+      setLastUpdateDate(lastDate ? format(lastDate, 'dd MMMM yyyy') : 'N/A');
+
       setChartData(formattedData);
     };
 
@@ -123,6 +129,9 @@ const LineGraph = () => {
                 <option value="movingAverage">7-Day Moving Average</option>
               </select>
             </label>
+          </div>
+          <div className="last-updated">
+            {`Data was last updated on ${lastUpdateDate}`}
           </div>
         </div>
       </div>
